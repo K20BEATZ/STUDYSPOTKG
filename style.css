@@ -1,528 +1,288 @@
-/* style.css */
+/* --- THEME-RELATED CSS VARIABLES AND BUTTON STYLES --- */
 
-/* Basic Reset & Body Styles */
-* {
+/* Define CSS variables for light and dark themes */
+:root {
+    /* Light theme colors */
+    --background-start: #e0f2f7;   /* Light bluish-grey for body background */
+    --background-end: #c8e6f1;     /* Slightly darker bluish-grey for body background */
+    --text-color: #2c3e50;         /* Dark charcoal for general text */
+    --primary-bg: #ffffff;         /* Primary background for main sections/cards */
+    --secondary-bg: #f8f8f8;       /* Secondary background for subtle variations */
+    --border-color: #a7c5eb;       /* Soft blue for borders */
+    --link-color: #007bff;         /* Blue for links */
+    --button-primary-bg: #6a0572;  /* Rich purple for primary buttons */
+    --button-primary-text: #fff;
+    --button-secondary-bg: #e2e8f0; /* Light grey for secondary buttons */
+    --button-secondary-text: #2c3e50;
+    --shadow-color: rgba(44, 62, 80, 0.15); /* Soft shadow color */
+    --header-bg: #ffffff;          /* Header background */
+    --footer-bg: #e2e8f0;          /* Footer background */
+    --footer-text: #4a5568;        /* Footer text color */
+}
+
+/* Dark theme colors - applied when .dark-mode class is present on body */
+body.dark-mode {
+    --background-start: #1a202c;   /* Deep dark blue-grey for body background */
+    --background-end: #2d3748;     /* Slightly lighter dark blue-grey for body background */
+    --text-color: #e2e8f0;         /* Off-white for general text */
+    --primary-bg: #2c3e50;         /* Darker blue-grey for main sections/cards */
+    --secondary-bg: #34495e;       /* Muted dark blue for subtle variations */
+    --border-color: #4a5568;       /* Darker grey for borders */
+    --link-color: #667eea;         /* Muted blue for links */
+    --button-primary-bg: #667eea;  /* Muted blue for primary buttons */
+    --button-primary-text: #fff;
+    --button-secondary-bg: #4a5568; /* Darker grey for secondary buttons */
+    --button-secondary-text: #e2e8f0;
+    --shadow-color: rgba(0, 0, 0, 0.4); /* More pronounced shadow color */
+    --header-bg: #1a202c;          /* Header background */
+    --footer-bg: #1a202c;          /* Footer background */
+    --footer-text: #e2e8f0;        /* Footer text color */
+}
+
+/* Global transitions for elements that change with theme */
+body, h1, h2, h3, h4, p, a, div, section, header, footer, nav, ul, li {
+    transition: background-color 0.8s ease, color 0.8s ease, border-color 0.8s ease, box-shadow 0.8s ease;
+}
+
+/* Styling for the theme toggle button */
+.theme-toggle-button {
+    background-color: var(--button-primary-bg); /* Use primary button background */
+    color: var(--button-primary-text); /* Use primary button text color */
+    border: 2px solid var(--border-color); /* Thicker dynamic border */
+    padding: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 70px;
+    height: 70px;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, transform 0.3s ease, box-shadow 0.4s ease;
+    box-shadow: 0 8px 16px var(--shadow-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    outline: none;
+
+    /* Positioning the button on the right side of the page */
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+/* Dark mode specific styles for the button (already handled by variables, but explicit if needed) */
+/* body.dark-mode .theme-toggle-button {
+    background-color: var(--button-primary-bg);
+    border-color: var(--border-color);
+    box-shadow: 0 8px 16px var(--shadow-color);
+} */
+
+
+/* Styling for the SVG icons inside the button */
+.theme-toggle-button svg {
+    width: 35px;
+    height: 35px;
+    fill: black;   /* Always black as requested */
+    stroke: black; /* Always black as requested */
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.4s ease; /* Bouncier transition */
+    position: absolute;
+}
+
+/* Icon animation classes for entry/exit effect */
+.theme-toggle-button svg.entering {
+    transform: translateY(120%) scale(0.8);
+    opacity: 0;
+}
+.theme-toggle-button svg.active {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+.theme-toggle-button svg.leaving {
+    transform: translateY(-120%) scale(0.8);
+    opacity: 0;
+}
+
+/* Hover effect for the button */
+.theme-toggle-button:hover {
+    transform: translateY(-5px) scale(1.08);
+    box-shadow: 0 12px 24px var(--shadow-color);
+}
+
+/* Active (click) effect for the button */
+.theme-toggle-button:active {
+    transform: translateY(0) scale(0.95);
+    box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+/* Responsive adjustments for smaller screens (for the button) */
+@media (max-width: 768px) {
+    .theme-toggle-button {
+        width: 60px;
+        height: 60px;
+    }
+    .theme-toggle-button svg {
+        width: 30px;
+        height: 30px;
+    }
+}
+@media (max-width: 480px) {
+    .theme-toggle-button {
+        width: 50px;
+        height: 50px;
+        top: 15px; /* Slightly adjust for smaller screens */
+        right: 15px;
+    }
+    .theme-toggle-button svg {
+        width: 25px;
+        height: 25px;
+    }
+}
+/* --- END OF THEME-RELATED CSS VARIABLES AND BUTTON STYLES --- */
+/* Example: Update your body styles */
+body {
+    font-family: 'Lora', serif; /* Use the new elegant font */
+    background: linear-gradient(135deg, var(--background-start) 0%, var(--background-end) 100%);
+    color: var(--text-color);
+    line-height: 1.6;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    background-color: #f4f4f4;
-    color: #333;
-}
-
-.container {
-    width: 80%;
-    margin: auto;
-    overflow: hidden; /* To clear floats */
-}
-
-/* Header */
+/* Example: Update your header styles */
 header {
-    background: #333;
-    color: #fff;
+    background-color: var(--header-bg); /* Use theme variable */
+    color: var(--text-color); /* Use theme variable */
     padding: 1rem 0;
-    border-bottom: 3px solid #77aaff;
+    box-shadow: 0 2px 10px var(--shadow-color); /* Use theme variable for shadow */
+    position: sticky; /* Example: if your header is sticky */
+    top: 0;
+    width: 100%;
+    z-index: 999; /* Ensure header is above other content but below theme button */
 }
 
-header .logo {
-    float: left;
-    padding-top: 5px; /* Align with nav */
-}
-
-header .logo a {
-    color: #fff;
+.logo a {
+    color: var(--text-color); /* Use theme variable */
     text-decoration: none;
     font-size: 1.8rem;
     font-weight: bold;
+    font-family: 'Playfair Display', serif; /* Use new heading font */
 }
 
-header nav {
-    float: right;
-}
-
-header nav ul {
-    list-style: none;
-}
-
-header nav ul li {
-    display: inline;
-    margin-left: 20px;
-}
-
-header nav a {
-    color: #fff;
+nav ul li a {
+    color: var(--text-color); /* Use theme variable */
     text-decoration: none;
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 1rem;
+    font-weight: 600;
+    transition: color 0.3s ease;
 }
 
-header nav a:hover {
-    color: #77aaff;
+nav ul li a:hover {
+    color: var(--link-color); /* Use theme variable for hover effect */
 }
 
-/* Buttons */
+/* Example: Update your main content sections */
+main {
+    padding-top: 20px; /* Adjust if your header covers content */
+}
+
+section {
+    background-color: var(--primary-bg); /* Use theme variable */
+    color: var(--text-color); /* Use theme variable */
+    padding: 40px 0;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 20px var(--shadow-color); /* Use theme variable */
+    border-radius: 10px;
+    border: 1px solid var(--border-color); /* Use theme variable */
+}
+
+section.hero {
+    background: linear-gradient(to right, var(--primary-bg) 0%, var(--secondary-bg) 100%); /* Example gradient for hero */
+    color: var(--text-color); /* Ensure text is readable */
+    padding: 80px 0;
+    text-align: center;
+    border-radius: 15px;
+    margin-top: 70px; /* Adjust to accommodate fixed button and header */
+}
+
+/* Example: Update headings */
+h2, h3, h4 {
+    font-family: 'Playfair Display', serif; /* Use new heading font */
+    color: var(--text-color); /* Use theme variable */
+    margin-bottom: 20px;
+}
+
+/* Example: Update paragraph text */
+p {
+    font-family: 'Lora', serif; /* Use new body font */
+    color: var(--text-color); /* Use theme variable */
+    line-height: 1.7;
+}
+
+/* Example: Update buttons */
 .btn {
-    display: inline-block;
-    color: #fff;
-    padding: 10px 20px;
-    text-decoration: none;
+    padding: 12px 25px;
     border-radius: 5px;
-    transition: background-color 0.3s ease;
-    margin-top: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    border: 1px solid transparent;
 }
 
 .btn-primary {
-    background-color: #77aaff;
-    border: 1px solid #77aaff;
+    background-color: var(--button-primary-bg); /* Use theme variable */
+    color: var(--button-primary-text); /* Use theme variable */
 }
 
 .btn-primary:hover {
-    background-color: #5588cc;
+    background-color: darken(var(--button-primary-bg), 10%); /* You'd need a CSS preprocessor for this or hardcode dark color */
+    /* Or just a slightly different shade */
+    opacity: 0.9;
 }
 
 .btn-secondary {
-    background-color: #555;
-    border: 1px solid #555;
-    margin-left: 10px;
+    background-color: var(--button-secondary-bg); /* Use theme variable */
+    color: var(--button-secondary-text); /* Use theme variable */
+    border-color: var(--button-secondary-text); /* Border for secondary button */
 }
 
 .btn-secondary:hover {
-    background-color: #333;
-}
-
-.btn-buy {
-    background-color: #28a745; /* Green */
-    border: 1px solid #28a745;
-}
-.btn-buy:hover {
-    background-color: #218838;
-}
-
-.btn-download {
-    background-color: #007bff; /* Blue */
-    border: 1px solid #007bff;
-}
-.btn-download:hover {
-    background-color: #0056b3;
+    opacity: 0.9;
 }
 
 
-/* Hero Section */
-.hero, .page-hero {
-    background: #5588cc url('images/hero-bg.jpg') no-repeat center center/cover; /* Add a background image for hero */
-    color: #fff;
-    text-align: center;
-    padding: 100px 0;
-    margin-bottom: 20px;
-    position: relative;
-}
-
-.hero::before { /* Overlay for better text readability */
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
-}
-
-.hero .container, .page-hero .container {
-    position: relative;
-    z-index: 1; /* Ensure text is above overlay */
-}
-
-.hero h2, .page-hero h2 {
-    font-size: 3rem;
-    margin-bottom: 10px;
-}
-
-.hero p, .page-hero p {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-}
-
-/* Features Section */
-.features {
-    padding: 40px 0;
-    text-align: center;
-}
-
-.features h3 {
-    font-size: 2rem;
-    margin-bottom: 30px;
-    color: #333;
-}
-
-.feature-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-}
-
+/* Example: Update features section items */
 .feature-item {
-    background: #fff;
-    padding: 30px;
+    background-color: var(--secondary-bg); /* Use theme variable */
+    color: var(--text-color); /* Use theme variable */
+    padding: 25px;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
-}
-
-.feature-item:hover {
-    transform: translateY(-5px);
+    box-shadow: 0 5px 15px var(--shadow-color); /* Use theme variable */
+    border: 1px solid var(--border-color); /* Use theme variable */
 }
 
 .feature-item i {
-    font-size: 3rem;
-    color: #77aaff;
-    margin-bottom: 15px;
-}
-
-.feature-item h4 {
-    font-size: 1.4rem;
-    margin-bottom: 10px;
-    color: #555;
-}
-
-/* Call to Action Section */
-.cta {
-    background: #77aaff;
-    color: #fff;
-    text-align: center;
-    padding: 60px 0;
-    margin-top: 30px;
-}
-
-.cta h2 {
+    color: var(--link-color); /* Use theme variable for icons */
     font-size: 2.5rem;
     margin-bottom: 15px;
 }
 
-.cta p {
-    font-size: 1.1rem;
-    margin-bottom: 30px;
-}
-
-/* Book Outlet Specific Styles */
-.book-list, .paper-list, .video-gallery {
-    padding: 40px 0;
-    text-align: center; /* Center items if using flex or grid */
-}
-
-.book-list .container, .paper-list .container, .video-gallery .container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
-    gap: 30px;
-}
-
-.book-item, .paper-item, .video-item {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    text-align: center;
-    transition: transform 0.3s ease;
-}
-
-.book-item:hover, .paper-item:hover, .video-item:hover {
-    transform: translateY(-5px);
-}
-
-.book-item img {
-    max-width: 100%;
-    height: 250px; /* Consistent height for images */
-    object-fit: cover; /* Ensures images cover the area without distortion */
-    border-radius: 4px;
-    margin-bottom: 15px;
-}
-
-.book-item h3, .paper-item h3, .video-item h3 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    color: #333;
-}
-
-.book-item .price {
-    font-size: 1.3rem;
-    font-weight: bold;
-    color: #28a745; /* Green for price */
-    margin-bottom: 15px;
-}
-
-.paper-item img {
-    max-width: 100%;
-    height: 200px; /* Thumbnail height */
-    object-fit: contain; /* Contain for PDFs (might be text, not full image) */
-    border: 1px solid #eee;
-    margin-bottom: 15px;
-}
-
-.paper-item p {
-    font-style: italic;
-    color: #666;
-    margin-bottom: 15px;
-}
-
-.video-item iframe {
-    width: 100%;
-    height: 200px; /* Adjust as needed */
-    border-radius: 4px;
-    margin-bottom: 15px;
-}
-
-/* Contact Us Specific Styles */
-.contact-info {
-    padding: 40px 0;
-    text-align: center;
-}
-
-.contact-info .container {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
-}
-
-.contact-card {
-    background: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    width: 300px; /* Fixed width for cards */
-    text-align: center;
-}
-
-.contact-icon {
-    font-size: 3.5rem;
-    color: #77aaff;
-    margin-bottom: 20px;
-}
-
-.contact-card h3 {
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-}
-
-.contact-card p {
-    margin-bottom: 15px;
-}
-
-.contact-link {
-    color: #77aaff;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.contact-link:hover {
-    text-decoration: underline;
-}
-
-/* Login Page Specific Styles */
-.login-form-section {
-    padding: 50px 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 400px; /* Ensure it takes up some space */
-}
-
-.login-container {
-    background: #fff;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    width: 100%;
-    max-width: 400px; /* Max width for the login form */
-    text-align: center;
-}
-
-.login-container h3 {
-    font-size: 2rem;
-    margin-bottom: 25px;
-    color: #333;
-}
-
-.form-group {
-    margin-bottom: 20px;
-    text-align: left;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #555;
-}
-
-.form-group input[type="text"],
-.form-group input[type="email"],
-.form-group input[type="password"],
-.form-group textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 1rem;
-}
-
-.form-options {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 25px;
-    font-size: 0.9rem;
-}
-
-.form-options a {
-    color: #77aaff;
-    text-decoration: none;
-}
-
-.form-options a:hover {
-    text-decoration: underline;
-}
-
-.login-container .btn {
-    width: 100%;
-    padding: 12px;
-    font-size: 1.1rem;
-}
-
-.signup-link {
-    margin-top: 20px;
-    font-size: 0.95rem;
-    color: #666;
-}
-
-.signup-link a {
-    color: #77aaff;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.signup-link a:hover {
-    text-decoration: underline;
-}
-
-
-/* Footer */
+/* Example: Update footer styles */
 footer {
-    background: #333;
-    color: #fff;
-    padding: 30px 0;
-    margin-top: 30px;
-    text-align: center;
+    background-color: var(--footer-bg); /* Use theme variable */
+    color: var(--footer-text); /* Use theme variable */
+    padding: 40px 0;
+    margin-top: 50px;
+    box-shadow: 0 -2px 10px var(--shadow-color); /* Use theme variable */
 }
 
-.footer-content {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap; /* Allows columns to wrap on smaller screens */
-    text-align: left;
-    margin-bottom: 20px;
-}
-
-.footer-column {
-    flex: 1; /* Distribute space evenly */
-    min-width: 250px; /* Minimum width before wrapping */
-    padding: 0 20px;
-    margin-bottom: 20px; /* Space between columns when wrapped */
-}
-
-.footer-column h4 {
-    color: #77aaff;
-    margin-bottom: 15px;
-    font-size: 1.2rem;
-}
-
-.footer-column ul {
-    list-style: none;
-}
-
-.footer-column ul li {
-    margin-bottom: 8px;
-}
-
-.footer-column ul li a {
-    color: #fff;
+footer a {
+    color: var(--footer-text); /* Use theme variable for footer links */
     text-decoration: none;
-    font-size: 0.9rem;
+    transition: color 0.3s ease;
 }
 
-.footer-column ul li a:hover {
-    color: #77aaff;
-}
-
-.footer-column p {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    color: #ccc;
-}
-
-.footer-column p i {
-    margin-right: 8px;
-    color: #77aaff;
-}
-
-.footer-column p a {
-    color: #fff;
-    text-decoration: none;
-}
-
-.footer-column p a:hover {
-    text-decoration: underline;
-    color: #77aaff;
-}
-
-.copyright {
-    border-top: 1px solid #555;
-    padding-top: 15px;
-    font-size: 0.85rem;
-    color: #ccc;
-}
-
-/* Responsive Design - Basic Media Queries */
-@media (max-width: 768px) {
-    header .logo,
-    header nav {
-        float: none;
-        text-align: center;
-    }
-
-    header nav ul li {
-        margin: 0 10px;
-    }
-
-    .hero h2 {
-        font-size: 2.5rem;
-    }
-
-    .hero p {
-        font-size: 1rem;
-    }
-
-    .feature-grid, .book-list .container, .paper-list .container, .video-gallery .container {
-        grid-template-columns: 1fr; /* Stack items on small screens */
-    }
-
-    .cta h2 {
-        font-size: 2rem;
-    }
-
-    .footer-content {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .footer-column {
-        text-align: center;
-        padding: 0 10px;
-        min-width: unset; /* Remove min-width to allow full stacking */
-        width: 100%;
-    }
+footer a:hover {
+    color: var(--link-color); /* Use theme variable for hover */
 }
