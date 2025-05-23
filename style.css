@@ -1,4 +1,4 @@
-/* --- THEME-RELATED CSS VARIABLES AND BUTTON STYLES --- */
+/* --- THEME-RELATED CSS VARIABLES AND BUTTON STYLES (Excluding fixed positioning) --- */
 
 /* Define CSS variables for light and dark themes */
 :root {
@@ -46,9 +46,9 @@ body, h1, h2, h3, h4, p, a, div, section, header, footer, nav, ul, li {
 
 /* Styling for the theme toggle button */
 .theme-toggle-button {
-    background-color: var(--button-primary-bg); /* Use primary button background */
-    color: var(--button-primary-text); /* Use primary button text color */
-    border: 2px solid var(--border-color); /* Thicker dynamic border */
+    background-color: var(--button-primary-bg);
+    color: var(--button-primary-text);
+    border: 2px solid var(--border-color);
     padding: 0;
     border-radius: 50%;
     cursor: pointer;
@@ -61,15 +61,10 @@ body, h1, h2, h3, h4, p, a, div, section, header, footer, nav, ul, li {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
+    position: relative; /* Keep relative for icon animation */
     overflow: hidden;
     outline: none;
-
-    /* Positioning the button on the right side of the page */
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1000;
+    /* Positioning properties (top, right, fixed, z-index) are removed from here */
 }
 
 /* Dark mode specific styles for the button (already handled by variables, but explicit if needed) */
@@ -84,9 +79,9 @@ body, h1, h2, h3, h4, p, a, div, section, header, footer, nav, ul, li {
 .theme-toggle-button svg {
     width: 35px;
     height: 35px;
-    fill: black;   /* Always black as requested */
-    stroke: black; /* Always black as requested */
-    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.4s ease; /* Bouncier transition */
+    fill: black;
+    stroke: black;
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.4s ease;
     position: absolute;
 }
 
@@ -131,8 +126,6 @@ body, h1, h2, h3, h4, p, a, div, section, header, footer, nav, ul, li {
     .theme-toggle-button {
         width: 50px;
         height: 50px;
-        top: 15px; /* Slightly adjust for smaller screens */
-        right: 15px;
     }
     .theme-toggle-button svg {
         width: 25px;
@@ -140,149 +133,3 @@ body, h1, h2, h3, h4, p, a, div, section, header, footer, nav, ul, li {
     }
 }
 /* --- END OF THEME-RELATED CSS VARIABLES AND BUTTON STYLES --- */
-/* Example: Update your body styles */
-body {
-    font-family: 'Lora', serif; /* Use the new elegant font */
-    background: linear-gradient(135deg, var(--background-start) 0%, var(--background-end) 100%);
-    color: var(--text-color);
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden; /* Prevent horizontal scroll */
-}
-
-/* Example: Update your header styles */
-header {
-    background-color: var(--header-bg); /* Use theme variable */
-    color: var(--text-color); /* Use theme variable */
-    padding: 1rem 0;
-    box-shadow: 0 2px 10px var(--shadow-color); /* Use theme variable for shadow */
-    position: sticky; /* Example: if your header is sticky */
-    top: 0;
-    width: 100%;
-    z-index: 999; /* Ensure header is above other content but below theme button */
-}
-
-.logo a {
-    color: var(--text-color); /* Use theme variable */
-    text-decoration: none;
-    font-size: 1.8rem;
-    font-weight: bold;
-    font-family: 'Playfair Display', serif; /* Use new heading font */
-}
-
-nav ul li a {
-    color: var(--text-color); /* Use theme variable */
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s ease;
-}
-
-nav ul li a:hover {
-    color: var(--link-color); /* Use theme variable for hover effect */
-}
-
-/* Example: Update your main content sections */
-main {
-    padding-top: 20px; /* Adjust if your header covers content */
-}
-
-section {
-    background-color: var(--primary-bg); /* Use theme variable */
-    color: var(--text-color); /* Use theme variable */
-    padding: 40px 0;
-    margin-bottom: 30px;
-    box-shadow: 0 10px 20px var(--shadow-color); /* Use theme variable */
-    border-radius: 10px;
-    border: 1px solid var(--border-color); /* Use theme variable */
-}
-
-section.hero {
-    background: linear-gradient(to right, var(--primary-bg) 0%, var(--secondary-bg) 100%); /* Example gradient for hero */
-    color: var(--text-color); /* Ensure text is readable */
-    padding: 80px 0;
-    text-align: center;
-    border-radius: 15px;
-    margin-top: 70px; /* Adjust to accommodate fixed button and header */
-}
-
-/* Example: Update headings */
-h2, h3, h4 {
-    font-family: 'Playfair Display', serif; /* Use new heading font */
-    color: var(--text-color); /* Use theme variable */
-    margin-bottom: 20px;
-}
-
-/* Example: Update paragraph text */
-p {
-    font-family: 'Lora', serif; /* Use new body font */
-    color: var(--text-color); /* Use theme variable */
-    line-height: 1.7;
-}
-
-/* Example: Update buttons */
-.btn {
-    padding: 12px 25px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-    border: 1px solid transparent;
-}
-
-.btn-primary {
-    background-color: var(--button-primary-bg); /* Use theme variable */
-    color: var(--button-primary-text); /* Use theme variable */
-}
-
-.btn-primary:hover {
-    background-color: darken(var(--button-primary-bg), 10%); /* You'd need a CSS preprocessor for this or hardcode dark color */
-    /* Or just a slightly different shade */
-    opacity: 0.9;
-}
-
-.btn-secondary {
-    background-color: var(--button-secondary-bg); /* Use theme variable */
-    color: var(--button-secondary-text); /* Use theme variable */
-    border-color: var(--button-secondary-text); /* Border for secondary button */
-}
-
-.btn-secondary:hover {
-    opacity: 0.9;
-}
-
-
-/* Example: Update features section items */
-.feature-item {
-    background-color: var(--secondary-bg); /* Use theme variable */
-    color: var(--text-color); /* Use theme variable */
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px var(--shadow-color); /* Use theme variable */
-    border: 1px solid var(--border-color); /* Use theme variable */
-}
-
-.feature-item i {
-    color: var(--link-color); /* Use theme variable for icons */
-    font-size: 2.5rem;
-    margin-bottom: 15px;
-}
-
-/* Example: Update footer styles */
-footer {
-    background-color: var(--footer-bg); /* Use theme variable */
-    color: var(--footer-text); /* Use theme variable */
-    padding: 40px 0;
-    margin-top: 50px;
-    box-shadow: 0 -2px 10px var(--shadow-color); /* Use theme variable */
-}
-
-footer a {
-    color: var(--footer-text); /* Use theme variable for footer links */
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-footer a:hover {
-    color: var(--link-color); /* Use theme variable for hover */
-}
