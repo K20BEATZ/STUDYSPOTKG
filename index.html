@@ -1,48 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <style>
-        /* ... other CSS rules ... */
-
-        /* Styling for the theme toggle button */
-        .theme-toggle-button {
-            /* Existing styles (background-color, color, border, padding, etc.) */
-            background-color: var(--button-bg-light, var(--button-bg-dark));
-            color: var(--button-text-light, var(--button-text-dark));
-            border: 2px solid var(--border-color-light, var(--border-color-dark));
-            padding: 0;
-            border-radius: 50%;
-            cursor: pointer;
-            width: 70px;
-            height: 70px;
-            font-size: 1rem;
-            font-weight: 600;
-            transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, transform 0.3s ease, box-shadow 0.4s ease;
-            box-shadow: 0 8px 16px var(--card-shadow-light);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            outline: none;
-
-            /* --- PASTE THESE LINES HERE --- */
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-            /* ------------------------------- */
-        }
-
-        /* ... rest of your CSS rules ... */
-    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Website Name - Home</title>
+    
     <link rel="stylesheet" href="style.css">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+
+    <button id="themeToggleButton" class="theme-toggle-button" aria-label="Toggle dark and light mode">
+        </button>
 
     <header>
         <div class="container">
@@ -135,5 +109,97 @@
         </div>
     </footer>
 
+    <script>
+        // Get the theme toggle button element
+        const themeToggleButton = document.getElementById('themeToggleButton');
+        // Get the body element to apply theme classes
+        const body = document.body;
+
+        // SVG icons for sun and moon with black fill and stroke (as requested)
+        const sunIcon = `
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+        `;
+
+        const moonIcon = `
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+        `;
+
+        // Function to set the theme based on a class and update the icon with animation
+        function setTheme(isDarkMode) {
+            const currentIcon = themeToggleButton.querySelector('.icon');
+            if (currentIcon) {
+                // Remove 'active' class to start 'leaving' animation if it's already active
+                currentIcon.classList.remove('active');
+                currentIcon.classList.add('leaving'); // Start exit animation for the current icon
+
+                // Listen for the end of the transition on the leaving icon
+                currentIcon.addEventListener('transitionend', function handler() {
+                    // Once exit animation is complete, remove the old icon from the DOM
+                    themeToggleButton.innerHTML = ''; // Clear current icon content
+
+                    // Create a new div to hold the new SVG icon
+                    const newIconContainer = document.createElement('div');
+                    newIconContainer.innerHTML = isDarkMode ? moonIcon : sunIcon;
+                    const newSvgElement = newIconContainer.firstElementChild; // Get the SVG element itself
+
+                    // Add the 'entering' class to prepare for the new icon's entry animation
+                    newSvgElement.classList.add('entering');
+                    themeToggleButton.appendChild(newSvgElement); // Append the new icon to the button
+
+                    // Force reflow to ensure the 'entering' class's styles are applied before 'active' removes them
+                    void newSvgElement.offsetWidth;
+
+                    // Remove 'entering' and add 'active' to trigger the entry animation
+                    newSvgElement.classList.remove('entering');
+                    newSvgElement.classList.add('active'); // Set to active state after animation
+
+                    // Clean up the event listener to prevent multiple calls
+                    currentIcon.removeEventListener('transitionend', handler);
+                }, { once: true }); // Ensure this listener runs only once
+            } else {
+                // This block runs on initial page load when there's no icon yet
+                themeToggleButton.innerHTML = isDarkMode ? moonIcon : sunIcon; // Directly set the icon
+                themeToggleButton.querySelector('.icon').classList.add('active'); // Set it to active state
+            }
+
+            // Apply 'dark-mode' class to the body and save preference to local storage
+            if (isDarkMode) {
+                body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Check for saved theme preference when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                setTheme(true); // Apply dark mode if user previously selected it
+            } else {
+                setTheme(false); // Default to light mode (or apply saved light mode)
+            }
+        });
+
+        // Add event listener to the button for toggling the theme on click
+        themeToggleButton.addEventListener('click', () => {
+            // Determine the next theme state by checking if 'dark-mode' is currently present
+            const isDarkMode = !body.classList.contains('dark-mode');
+            setTheme(isDarkMode); // Call setTheme to update the UI and local storage
+        });
+    </script>
 </body>
 </html>
