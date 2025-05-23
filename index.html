@@ -1,205 +1,203 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Website Name - Home</title>
-    
-    <link rel="stylesheet" href="style.css">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Your Website Name - Home</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 </head>
+
 <body>
 
-    <button id="themeToggleButton" class="theme-toggle-button" aria-label="Toggle dark and light mode">
-        </button>
 
-    <header>
-        <div class="container">
-            <h1 class="logo"><a href="index.html">STUDY SPOT</a></h1>
-            <nav>
-                <ul>
-                    <li><a href="book-outlet.html">BOOK OUTLET</a></li>
-                    <li><a href="al-papers.html">A/L PAPERS</a></li>
-                    <li><a href="youtube-lessons.html">YOUTUBE LESSONS</a></li>
-                    <li><a href="contact-us.html">CONTACT US</a></li>
-                    <li><a href="login.html">LOG IN</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
-    <main>
-        <section class="hero">
-            <div class="container">
-                <h2>Welcome to Your Learning & Shopping Hub!</h2>
-                <p>Discover a world of knowledge with A/L papers, engaging YouTube lessons, and a wide selection of books.</p>
-                <a href="book-outlet.html" class="btn btn-primary">Shop Now</a>
-                <a href="al-papers.html" class="btn btn-secondary">Download A/L Papers</a>
-            </div>
-        </section>
+    <header>
 
-        <section class="features">
-            <div class="container">
-                <h3>Why Choose Us?</h3>
-                <div class="feature-grid">
-                    <div class="feature-item">
-                        <i class="fas fa-book-open"></i>
-                        <h4>Extensive Book Collection</h4>
-                        <p>Find your next read or academic resource.</p>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-file-pdf"></i>
-                        <h4>Free A/L Past Papers</h4>
-                        <p>Access a valuable archive for your studies.</p>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fab fa-youtube"></i>
-                        <h4>Engaging Video Lessons</h4>
-                        <p>Learn complex topics easily through video.</p>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-headset"></i>
-                        <h4>Dedicated Support</h4>
-                        <p>We're here to help you every step of the way.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <div class="container">
 
-        <section class="cta">
-            <div class="container">
-                <h2>Ready to Start Your Journey?</h2>
-                <p>Whether you're looking for books, study materials, or engaging lessons, we have something for everyone.</p>
-                <a href="contact-us.html" class="btn btn-primary">Get in Touch</a>
-            </div>
-        </section>
-    </main>
+            <h1 class="logo"><a href="index.html">STUDY SPOT</a></h1>
 
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h4>About Us</h4>
-                    <p>Your Website Name is dedicated to providing quality educational resources and a diverse range of books to support your learning journey.</p>
-                </div>
-                <div class="footer-column">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="book-outlet.html">Book Outlet</a></li>
-                        <li><a href="al-papers.html">A/L Papers</a></li>
-                        <li><a href="youtube-lessons.html">YouTube Lessons</a></li>
-                        <li><a href="contact-us.html">Contact Us</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Contact Info</h4>
-                    <p><i class="fas fa-envelope"></i> Email: <a href="mailto:kavindunavodyana3@gmail.com">kavindunavodyana3@gmail.com</a></p>
-                    <p><i class="fab fa-whatsapp"></i> WhatsApp: <a href="https://wa.me/+94725208969" target="_blank">+94 72 520 8969</a></p>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2025 Your Website Name. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+            <nav>
 
-    <script>
-        // Get the theme toggle button element
-        const themeToggleButton = document.getElementById('themeToggleButton');
-        // Get the body element to apply theme classes
-        const body = document.body;
+                <ul>
 
-        // SVG icons for sun and moon with black fill and stroke (as requested)
-        const sunIcon = `
-            <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="5"></circle>
-                <line x1="12" y1="1" x2="12" y2="3"></line>
-                <line x1="12" y1="21" x2="12" y2="23"></line>
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                <line x1="1" y1="12" x2="3" y2="12"></line>
-                <line x1="21" y1="12" x2="23" y2="12"></line>
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-            </svg>
-        `;
+                    <li><a href="book-outlet.html">BOOK OUTLET</a></li>
 
-        const moonIcon = `
-            <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-            </svg>
-        `;
+                    <li><a href="al-papers.html">A/L PAPERS</a></li>
 
-        // Function to set the theme based on a class and update the icon with animation
-        function setTheme(isDarkMode) {
-            const currentIcon = themeToggleButton.querySelector('.icon');
-            if (currentIcon) {
-                // Remove 'active' class to start 'leaving' animation if it's already active
-                currentIcon.classList.remove('active');
-                currentIcon.classList.add('leaving'); // Start exit animation for the current icon
+                    <li><a href="youtube-lessons.html">YOUTUBE LESSONS</a></li>
 
-                // Listen for the end of the transition on the leaving icon
-                currentIcon.addEventListener('transitionend', function handler() {
-                    // Once exit animation is complete, remove the old icon from the DOM
-                    themeToggleButton.innerHTML = ''; // Clear current icon content
+                    <li><a href="contact-us.html">CONTACT US</a></li>
 
-                    // Create a new div to hold the new SVG icon
-                    const newIconContainer = document.createElement('div');
-                    newIconContainer.innerHTML = isDarkMode ? moonIcon : sunIcon;
-                    const newSvgElement = newIconContainer.firstElementChild; // Get the SVG element itself
+                    <li><a href="login.html">LOG IN</a></li>
 
-                    // Add the 'entering' class to prepare for the new icon's entry animation
-                    newSvgElement.classList.add('entering');
-                    themeToggleButton.appendChild(newSvgElement); // Append the new icon to the button
+                </ul>
 
-                    // Force reflow to ensure the 'entering' class's styles are applied before 'active' removes them
-                    void newSvgElement.offsetWidth;
+            </nav>
 
-                    // Remove 'entering' and add 'active' to trigger the entry animation
-                    newSvgElement.classList.remove('entering');
-                    newSvgElement.classList.add('active'); // Set to active state after animation
+        </div>
 
-                    // Clean up the event listener to prevent multiple calls
-                    currentIcon.removeEventListener('transitionend', handler);
-                }, { once: true }); // Ensure this listener runs only once
-            } else {
-                // This block runs on initial page load when there's no icon yet
-                themeToggleButton.innerHTML = isDarkMode ? moonIcon : sunIcon; // Directly set the icon
-                themeToggleButton.querySelector('.icon').classList.add('active'); // Set it to active state
-            }
+    </header>
 
-            // Apply 'dark-mode' class to the body and save preference to local storage
-            if (isDarkMode) {
-                body.classList.add('dark-mode');
-                localStorage.setItem('theme', 'dark');
-            } else {
-                body.classList.remove('dark-mode');
-                localStorage.setItem('theme', 'light');
-            }
-        }
 
-        // Check for saved theme preference when the page loads
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark') {
-                setTheme(true); // Apply dark mode if user previously selected it
-            } else {
-                setTheme(false); // Default to light mode (or apply saved light mode)
-            }
-        });
 
-        // Add event listener to the button for toggling the theme on click
-        themeToggleButton.addEventListener('click', () => {
-            // Determine the next theme state by checking if 'dark-mode' is currently present
-            const isDarkMode = !body.classList.contains('dark-mode');
-            setTheme(isDarkMode); // Call setTheme to update the UI and local storage
-        });
-    </script>
+    <main>
+
+        <section class="hero">
+
+            <div class="container">
+
+                <h2>Welcome to Your Learning & Shopping Hub!</h2>
+
+                <p>Discover a world of knowledge with A/L papers, engaging YouTube lessons, and a wide selection of books.</p>
+
+                <a href="book-outlet.html" class="btn btn-primary">Shop Now</a>
+
+                <a href="al-papers.html" class="btn btn-secondary">Download A/L Papers</a>
+
+            </div>
+
+        </section>
+
+
+
+        <section class="features">
+
+            <div class="container">
+
+                <h3>Why Choose Us?</h3>
+
+                <div class="feature-grid">
+
+                    <div class="feature-item">
+
+                        <i class="fas fa-book-open"></i>
+
+                        <h4>Extensive Book Collection</h4>
+
+                        <p>Find your next read or academic resource.</p>
+
+                    </div>
+
+                    <div class="feature-item">
+
+                        <i class="fas fa-file-pdf"></i>
+
+                        <h4>Free A/L Past Papers</h4>
+
+                        <p>Access a valuable archive for your studies.</p>
+
+                    </div>
+
+                    <div class="feature-item">
+
+                        <i class="fab fa-youtube"></i>
+
+                        <h4>Engaging Video Lessons</h4>
+
+                        <p>Learn complex topics easily through video.</p>
+
+                    </div>
+
+                    <div class="feature-item">
+
+                        <i class="fas fa-headset"></i>
+
+                        <h4>Dedicated Support</h4>
+
+                        <p>We're here to help you every step of the way.</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <section class="cta">
+
+            <div class="container">
+
+                <h2>Ready to Start Your Journey?</h2>
+
+                <p>Whether you're looking for books, study materials, or engaging lessons, we have something for everyone.</p>
+
+                <a href="contact-us.html" class="btn btn-primary">Get in Touch</a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <footer>
+
+        <div class="container">
+
+            <div class="footer-content">
+
+                <div class="footer-column">
+
+                    <h4>About Us</h4>
+
+                    <p>Your Website Name is dedicated to providing quality educational resources and a diverse range of books to support your learning journey.</p>
+
+                </div>
+
+                <div class="footer-column">
+
+                    <h4>Quick Links</h4>
+
+                    <ul>
+
+                        <li><a href="index.html">Home</a></li>
+
+                        <li><a href="book-outlet.html">Book Outlet</a></li>
+
+                        <li><a href="al-papers.html">A/L Papers</a></li>
+
+                        <li><a href="youtube-lessons.html">YouTube Lessons</a></li>
+
+                        <li><a href="contact-us.html">Contact Us</a></li>
+
+                    </ul>
+
+                </div>
+
+                <div class="footer-column">
+
+                    <h4>Contact Info</h4>
+
+                    <p><i class="fas fa-envelope"></i> Email: <a href="mailto:kavindunavodyana3@gmail.com">kavindunavodyana3@gmail.com</a></p>
+
+                    <p><i class="fab fa-whatsapp"></i> WhatsApp: <a href="https://wa.me/+94725208969" target="_blank">+94 72 520 8969</a></p>
+
+                </div>
+
+            </div>
+
+            <div class="copyright">
+
+                <p>&copy; 2025 Your Website Name. All rights reserved.</p>
+
+            </div>
+
+        </div>
+
+    </footer>
 </body>
 </html>
